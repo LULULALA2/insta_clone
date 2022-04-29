@@ -19,14 +19,11 @@
             crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="../static/mystyle.css">
     <title>Hyunstagram</title>
-    <style>
-
-    </style>
-    <script>
-
-    </script>
-
 </head>
+<script>
+
+</script>
+
 <header>
     <div class="wrapper">
         <div class="wrap-header">
@@ -62,9 +59,71 @@
                             <span class="profile-item add-explanation">꽃구경 하러간 산 어딘가..?</span>
                         </div>
                     </div>
+                    <!--더보기 버튼 - 모달창-->
                     <div class="card-header-more">
-                        <img class="more" src="../static/images/more.png">
+                        <div class="modal">
+                            <div class="modal-body">
+                                <div class="modal-body-box">
+                                    <div class="modal-body-line"><span class="red-font">신고</span></div>
+                                    <div class="modal-body-line"><span class="red-font">팔로우 취소</span></div>
+                                    <div class="modal-body-line">게시물로 이동</div>
+                                    <div class="modal-body-line">공유 대상...</div>
+                                    <div class="modal-body-line">링크 복사</div>
+                                    <div class="modal-body-line">퍼가기</div>
+                                    <button class="modal-body-btn" onclick="btn_close_modal()">취소</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="follow-btn" onclick="btn_open_modal()"><img class="more" src="../static/images/more.png">
+                        </button>
+                        <script>
+                            // const body = document.querySelector('body');
+                            // const modal = document.querySelector('.modal');
+                            // const btnOpenModal = document.querySelector('.btn-open-modal');
+                            //
+                            // btnOpenModal.addEventListener('click', () => {
+                            //     modal.classList.toggle('show');
+                            //
+                            //     if (modal.classList.contains('show')) {
+                            //         body.style.overflow = 'hidden';
+                            //     }
+                            // });
+                            //
+                            // modal.addEventListener('click', (event) => {
+                            //     if (event.target === modal) {
+                            //         modal.classList.toggle('show');
+                            //
+                            //         if (!modal.classList.contains('show')) {
+                            //             body.style.overflow = 'auto';
+                            //         }
+                            //     }
+                            // });
+
+                            function btn_open_modal() {
+                                var modal = $('.modal');
+                                var modalbody = $('.modal-body');
+
+                                $(modal).show();
+                                $(modalbody).show();
+
+                                $('html').css({
+                                    overflow: 'hidden',
+                                    height: 'auto'
+                                })
+                            }
+
+                            function btn_close_modal() {
+                                var modal = $('.modal');
+                                var modalbody = $('.modal-body');
+
+                                $(modal).hide();
+                                $(modalbody).hide();
+
+                                $('html').removeAttr('style');
+                            }
+                        </script>
                     </div>
+
                 </div>
                 <!--card - 이미지 부분-->
                 <img class="card-img"
@@ -83,8 +142,9 @@
                 <!--card - 텍스트 부분-->
                 <div class="card-body">
                     <h6><span class="nickname">좋아요 2개</span></h6>
-                        <h6 class="card-text"><span class="nickname">LULULALA_2</span>
-                            안↗녕↗하세↘요~ 바람↘이 시원해 기분이 너무 좋아요~ 유후!</h6>
+                        <h6 class="card-text longtxt"><span class="nickname">LULULALA_2</span>
+                            안↗녕↗하세↘요~ 바람↘이 시원해 기분이 너무 좋아요~ 유후!
+                            <br>끝내줬어요! 긴장한 탓에 엉뚱한 얘기만 늘어놓았죠~ 바보같이~</h6>
                         <h6><span style="color: #8e8e8e; font-weight: 500">댓글 4개 모두 보기</span></h6>
                         <h6><span class="nickname">JA_2</span>
                             저 노래 명곡이죠..! 이 맘때 듣기 딱좋은 노래</h6>
@@ -176,7 +236,6 @@
                     <button type="button" class="comment-btn btn btn-link">게시</button>
                 </div>
             </div>
-
             <!--card.1 - 사진 한장-->
             <div class="card1">
                 <div class="card1-header">
@@ -242,7 +301,7 @@
                 </div>
                 <div class="recommend">
                     <p><strong style="color: #8e8e8e">회원님을 위한 추천</strong></p>
-                    <a>모두 보기</a>
+                    <a><span style="font-size: 12px; font-weight: 600">모두 보기</span></a>
                 </div>
                 <div class="profile-follow">
                     <div class="card-header-profile">
