@@ -21,6 +21,35 @@
     <title>Hyunstagram</title>
 </head>
 <script>
+    $(document).ready(function(){
+        showMoreButton()
+    })
+
+    let feedArray = []
+
+function showMoreButton() {
+    let cntPost = $('.card-text').length;
+
+    for(let i=0; i<cntPost; i++) {
+        let id = '#text' + i
+        let text = $(id).text();
+        feedArray[i] = text;
+
+        if (text.length >= 30) {
+            let text_short = text.substring(0, 30).trim() + "... ";
+            let moreButton = `<Button onclick="moreButtonClick(this, ${i})" class="btn showMore">더 보기</Button>`;
+
+            $(id).parents('.card-text').append(moreButton)
+            $(id).text(text_short)
+        }
+    }
+}
+
+function moreButtonClick(obj, i) {
+    let textId = '#text' + i;
+    $(obj).hide();
+    $(textId).text(feedArray[i]);
+}
 
 </script>
 
@@ -74,31 +103,9 @@
                                 </div>
                             </div>
                         </div>
-                        <button class="follow-btn" onclick="btn_open_modal()"><img class="more" src="../static/images/more.png">
+                        <button class="btn follow-btn" onclick="btn_open_modal()"><img class="more" src="../static/images/more.png">
                         </button>
                         <script>
-                            // const body = document.querySelector('body');
-                            // const modal = document.querySelector('.modal');
-                            // const btnOpenModal = document.querySelector('.btn-open-modal');
-                            //
-                            // btnOpenModal.addEventListener('click', () => {
-                            //     modal.classList.toggle('show');
-                            //
-                            //     if (modal.classList.contains('show')) {
-                            //         body.style.overflow = 'hidden';
-                            //     }
-                            // });
-                            //
-                            // modal.addEventListener('click', (event) => {
-                            //     if (event.target === modal) {
-                            //         modal.classList.toggle('show');
-                            //
-                            //         if (!modal.classList.contains('show')) {
-                            //             body.style.overflow = 'auto';
-                            //         }
-                            //     }
-                            // });
-
                             function btn_open_modal() {
                                 var modal = $('.modal');
                                 var modalbody = $('.modal-body');
@@ -111,7 +118,6 @@
                                     height: 'auto'
                                 })
                             }
-
                             function btn_close_modal() {
                                 var modal = $('.modal');
                                 var modalbody = $('.modal-body');
@@ -142,9 +148,9 @@
                 <!--card - 텍스트 부분-->
                 <div class="card-body">
                     <h6><span class="nickname">좋아요 2개</span></h6>
-                        <h6 class="card-text longtxt"><span class="nickname">LULULALA_2</span>
-                            안↗녕↗하세↘요~ 바람↘이 시원해 기분이 너무 좋아요~ 유후!
-                            <br>끝내줬어요! 긴장한 탓에 엉뚱한 얘기만 늘어놓았죠~ 바보같이~</h6>
+                        <h6 class="card-text"><span class="nickname">LULULALA_2</span>
+                            <span id="text0">안↗녕↗하세↘요~ 바람↘이 시원해 기분이 너무 좋아요~ 유후!
+                            <br>끝내줬어요! 긴장한 탓에 엉뚱한 얘기만 늘어놓았죠~ 바보같이~</span></h6>
                         <h6><span style="color: #8e8e8e; font-weight: 500">댓글 4개 모두 보기</span></h6>
                         <h6><span class="nickname">JA_2</span>
                             저 노래 명곡이죠..! 이 맘때 듣기 딱좋은 노래</h6>
@@ -220,7 +226,7 @@
                 <div class="card-body">
                     <h6><span class="nickname">좋아요 10개</span></h6>
                     <h6 class="card-text"><span class="nickname">nyanghari._.</span>
-                        냥아치 같은 하리.. 이럴때만 천사같지</h6>
+                        <span id="text1">냥아치 같은 하리.. 이럴때만 천사같지</span></h6>
                     <h6><span style="color: #8e8e8e; font-weight: 500">댓글 4개 모두 보기</span></h6>
                     <h6><span class="nickname">o0.0oht</span>
                         너무 귀욥따ㅠㅠㅠㅠㅠㅠㅠ</h6>
@@ -268,7 +274,8 @@
                 <div class="card-body">
                     <h6><span class="nickname">좋아요 2개</span></h6>
                     <h6 class="card-text"><span class="nickname">Hyeinss98</span>
-                        주말인데 아침에 일찍일어나니까 할일이 없음...</h6>
+                        <span id="text2">주말인데 아침에 일찍일어나니까 할일이 없음...
+                        <br>인스타 감성으로 창가에 테이블 갖다두고 브런치에 커피 세팅 어떰?</span></h6>
                     <h6><span style="color: #8e8e8e; font-weight: 500">댓글 3개 모두 보기</span></h6>
                     <h6><span class="nickname">haruharu_2</span>
                         그리고 나는 시험이 이틀뒤라는 걸 알지</h6>
@@ -287,7 +294,6 @@
             </div>
         </div>
 
-
         <!--세로 레이아웃 - 오른쪽 프로필박스-->
         <div class="aside">
             <div class="profile-box visible-md visible-lg" style="left: 755px;">
@@ -297,7 +303,7 @@
                         <span class="profile-item nickname">LULULALA_2</span>
                         <span class="profile-item add-explanation"></span>
                     </div>
-                    <button class="follow-btn">전환</button>
+                    <button class="btn follow-btn">전환</button>
                 </div>
                 <div class="recommend">
                     <p><strong style="color: #8e8e8e">회원님을 위한 추천</strong></p>
@@ -311,7 +317,7 @@
                             <span class="profile-item add-explanation">회원님을 위한 추천</span>
                         </div>
                     </div>
-                    <button class="follow-btn">팔로우</button>
+                    <button class="btn follow-btn">팔로우</button>
                 </div>
                 <div class="profile-follow">
                     <div class="card-header-profile">
@@ -321,7 +327,7 @@
                             <span class="profile-item add-explanation">Instagram 신규 가입</span>
                         </div>
                     </div>
-                    <button class="follow-btn">팔로우</button>
+                    <button class="btn follow-btn">팔로우</button>
                 </div>
                 <div class="profile-follow">
                     <div class="card-header-profile">
@@ -331,7 +337,7 @@
                             <span class="profile-item add-explanation">Instagram 신규 가입</span>
                         </div>
                     </div>
-                    <button class="follow-btn">팔로우</button>
+                    <button class="btn follow-btn">팔로우</button>
                 </div>
                 <div class="profile-follow">
                     <div class="card-header-profile">
@@ -341,7 +347,7 @@
                             <span class="profile-item add-explanation">Instagram 신규 가입</span>
                         </div>
                     </div>
-                    <button class="follow-btn">팔로우</button>
+                    <button class="btn follow-btn">팔로우</button>
                 </div>
                 <div class="profile-follow">
                     <div class="card-header-profile">
@@ -351,17 +357,20 @@
                             <span class="profile-item add-explanation">Instagram 신규 가입</span>
                         </div>
                     </div>
-                    <button class="follow-btn">팔로우</button>
+                    <button class="btn follow-btn">팔로우</button>
                 </div>
             </div>
             <!--footer-->
             <div class="footer">
-                <p class="footer-font"><a href="https://lululala-2.tistory.com/" target="_blank">소개</a>·도움말·홍보 센터·API·채용
-                    정보·
-                    <br>개인정보처리방침·약관·위치·인기 계정·해시태그·
-                    <br>언어</p>
-                <span class="footer-font">2022 INSTAGRAM CLONE CODING </span>
-                <br><span class="footer-font"> SPARTA CAMP - 이현경</span>
+                <div class="footer-wrap">
+                    <p class="footer-font"><a href="https://lululala-2.tistory.com/" target="_blank">소개</a>·도움말·홍보
+                        센터·API·채용
+                        정보·
+                        <br>개인정보처리방침·약관·위치·인기 계정·해시태그·
+                        <br>언어</p>
+                    <span class="footer-font">2022 INSTAGRAM CLONE CODING </span>
+                    <br><span class="footer-font"> SPARTA CAMP - 이현경</span>
+                </div>
             </div>
         </div>
     </div>
